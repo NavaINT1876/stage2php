@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PostsSearch */
@@ -26,7 +27,22 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             'title',
             'text:ntext',
-            'date',
+            [
+                'attribute' => 'date',
+                'value' => function($data){return date('d-M-Y', $data->date);},
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'date_from',
+                    'attribute2' => 'date_to',
+                    'options' => ['placeholder' => 'Start date'],
+                    'options2' => ['placeholder' => 'End date'],
+                    'type' => DatePicker::TYPE_RANGE,
+                    'pluginOptions' => [
+                        'format' => 'dd-mm-yyyy',
+                        'autoclose' => true,
+                    ]
+                ]),
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

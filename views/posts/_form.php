@@ -29,7 +29,7 @@ use vova07\imperavi\Widget;
     <div id="datepicker-stg2">
         <?= $form->field($model, 'strDate')->widget(DatePicker::classname(), [
             'options' => [
-                'placeholder' => 'Enter date ...',
+                'placeholder' => 'Click and choose date ...',
                 'value' => $model->isNewRecord ? '' : date('d-M-Y', $model->date)
             ],
             'pluginOptions' => [

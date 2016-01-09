@@ -12,6 +12,8 @@ use app\models\Posts;
  */
 class PostsSearch extends Posts
 {
+    public $date_from;
+    public $date_to;
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class PostsSearch extends Posts
     {
         return [
             [['id', 'date'], 'integer'],
-            [['title', 'text'], 'safe'],
+            [['title', 'text', 'date_from', 'date_to'], 'safe'],
         ];
     }
 
@@ -62,6 +64,10 @@ class PostsSearch extends Posts
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'text', $this->text]);
+        if($this->date_from !='' && $this->date_to != ''){
+            $query->andFilterWhere(['>=', 'date', strtotime($this->date_from)])
+                ->andFilterWhere(['<=', 'date', strtotime($this->date_to)]);
+        }
 
         return $dataProvider;
     }
