@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Comments;
 use Yii;
 use app\models\Posts;
 use app\models\PostsSearch;
@@ -48,9 +49,20 @@ class PostsController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        $comments = Comments::find()->where(['post_id' => $id])->all();
+        $newComment = new Comments();
+        if ($newComment->load(Yii::$app->request->post()) && $newComment->validate()) {
+            $newComment->created_at = time();
+            $newComment->post_id = $id;
+            $newComment->save();
+            return $this->redirect(['view', 'id' => $id]);
+        } else {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+                'comments' => $comments,
+                'newComment' => $newComment,
+            ]);
+        }
     }
 
     /**
@@ -62,7 +74,9 @@ class PostsController extends Controller
     {
         $model = new Posts();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->date = strtotime($model->strDate);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -81,8 +95,7 @@ class PostsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())) {
-//            echo strtotime($model->strDate)."<br/>"; die;
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->date = strtotime($model->strDate);
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);

@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\widgets\ActiveForm;
+use yii\helpers\Url;
+use app\models\Posts;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Posts */
@@ -25,14 +27,45 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'title',
-            'text:ntext',
-            'date',
-        ],
-    ]) ?>
+    <div class="content-wrapper">
+        <div class="content" id="content-1">
+            <div class="single-view-text">
+                <p><?= $model->text; ?></p>
+            </div>
+            <?php $form = ActiveForm::begin(); ?>
+            <div class="notify"><p>Message</p></div>
+                <h3>Leave your comment:</h3>
+                <div class="form-item form-name">
+<!--                    <label for="thename">Name: </label>-->
+<!--                    <input type='text' name='thename' id='thename' placeholder="Your name"/>-->
+                    <?= $form->field($newComment, 'name')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class="form-item form-email">
+<!--                    <label for="email">Email: </label>-->
+<!--                    <input type='text' name='email' id='email' placeholder="Your email"/>-->
+                    <?= $form->field($newComment, 'email')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class="form-item form-comment">
+<!--                    <label for="comment">Comment:</label>-->
+<!--                    <textarea name='comment' id='comment' placeholder="Your message"></textarea>-->
+                    <?= $form->field($newComment, 'message')->textArea(['rows' => '6']) ?>
 
+                </div>
+                <div class="submit-form">
+                    <?= Html::submitButton('Add comment', ['class' => 'btn btn-success']) ?>
+                </div>
+            <?php ActiveForm::end(); ?>
+            <div class="comments-list">
+                <h3>Comments:</h3>
+                <?php foreach($comments as $comment){ ?>
+                    <section>
+                        <h5><?= $comment['name'] ?> <span>says...</span></h5>
+                        <p><?= $comment['message'] ?></p>
+                        <div class="comment-date"><?= date('d.m.Y'); ?></div>
+                    </section>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+    <div class="page-buffer"></div>
 </div>
