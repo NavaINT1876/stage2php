@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="single-view-text">
                 <p><?= $model->text; ?></p>
             </div>
-            <?php $form = ActiveForm::begin(); ?>
+            <?php $form = ActiveForm::begin(['options' => ['id' => 'comment-form']]); ?>
             <div class="notify"><p>Message</p></div>
                 <h3>Leave your comment:</h3>
                 <div class="form-item form-name">

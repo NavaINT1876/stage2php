@@ -63,8 +63,6 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; StagetwoPHPtest <?= date('Y') ?>. This app is developed by Igor Kucherenko.</p>
-
-        <p class="pull-right"></p><br>
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
