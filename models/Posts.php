@@ -14,6 +14,8 @@ use Yii;
  */
 class Posts extends \yii\db\ActiveRecord
 {
+
+    public $strDate;
     /**
      * @inheritdoc
      */
@@ -28,9 +30,8 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'text', 'date'], 'required'],
-            [['text'], 'string'],
-            [['date'], 'integer'],
+            [['title', 'text', 'strDate'], 'required'],
+            [['text', 'text', 'strDate'], 'string'],
             [['title'], 'string', 'max' => 255]
         ];
     }
@@ -41,10 +42,9 @@ class Posts extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'title' => 'Title',
             'text' => 'Text',
-            'date' => 'Date',
+            'strDate' => 'Date',
         ];
     }
 }
