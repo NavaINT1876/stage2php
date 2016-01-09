@@ -120,6 +120,19 @@ class PostsController extends Controller
     }
 
     /**
+     * Deletes an existing Posts model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDeleteMain($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['site/index']);
+    }
+
+    /**
      * Finds the Posts model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id

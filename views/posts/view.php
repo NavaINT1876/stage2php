@@ -36,18 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="notify"><p>Message</p></div>
                 <h3>Leave your comment:</h3>
                 <div class="form-item form-name">
-<!--                    <label for="thename">Name: </label>-->
-<!--                    <input type='text' name='thename' id='thename' placeholder="Your name"/>-->
                     <?= $form->field($newComment, 'name')->textInput(['maxlength' => true]) ?>
                 </div>
                 <div class="form-item form-email">
-<!--                    <label for="email">Email: </label>-->
-<!--                    <input type='text' name='email' id='email' placeholder="Your email"/>-->
                     <?= $form->field($newComment, 'email')->textInput(['maxlength' => true]) ?>
                 </div>
                 <div class="form-item form-comment">
-<!--                    <label for="comment">Comment:</label>-->
-<!--                    <textarea name='comment' id='comment' placeholder="Your message"></textarea>-->
                     <?= $form->field($newComment, 'message')->textArea(['rows' => '6']) ?>
 
                 </div>
