@@ -10,8 +10,15 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
+/**
+ * Class SiteController
+ * @package app\controllers
+ */
 class SiteController extends Controller
 {
+    /**
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -35,6 +42,10 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * Additional classes involved.
+     * @return array
+     */
     public function actions()
     {
         return [
@@ -48,12 +59,19 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * Renders index page with all posts.
+     * @return string
+     */
     public function actionIndex()
     {
         $posts = Posts::find()->all();
         return $this->render('index', ['posts' => $posts]);
     }
 
+    /**
+     * @return string|\yii\web\Response
+     */
     public function actionLogin()
     {
         if (!\Yii::$app->user->isGuest) {
@@ -69,6 +87,9 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * @return \yii\web\Response
+     */
     public function actionLogout()
     {
         Yii::$app->user->logout();
@@ -76,6 +97,10 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    /**
+     * Renders contact page
+     * @return string|\yii\web\Response
+     */
     public function actionContact()
     {
         $model = new ContactForm();
@@ -89,6 +114,10 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * Renders About page.
+     * @return string
+     */
     public function actionAbout()
     {
         return $this->render('about');

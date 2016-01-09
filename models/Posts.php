@@ -15,6 +15,10 @@ use Yii;
 class Posts extends \yii\db\ActiveRecord
 {
 
+    /**
+     * Date from datepicker as string in format "03-Feb-2016".
+     * @var
+     */
     public $strDate;
     /**
      * @inheritdoc
@@ -25,6 +29,7 @@ class Posts extends \yii\db\ActiveRecord
     }
 
     /**
+     * Validation rules
      * @inheritdoc
      */
     public function rules()
@@ -37,6 +42,7 @@ class Posts extends \yii\db\ActiveRecord
     }
 
     /**
+     * Labels for form fields
      * @inheritdoc
      */
     public function attributeLabels()
@@ -49,9 +55,9 @@ class Posts extends \yii\db\ActiveRecord
     }
 
     /**
-     * Method is used to get preview text of each news list item.
-     * @param $text. Full text of news item passed here as param.
-     * @return string, which is preview string showed in news list.
+     * Method is used to get preview text of each post list item.
+     * @param $text. Full text of post item passed here as param.
+     * @return string, which is preview string showed in posts list.
      */
     public static function getPreviewText($text)
     {

@@ -43,7 +43,8 @@ class PostsController extends Controller
     }
 
     /**
-     * Displays a single Posts model.
+     * Displays a single Post model.
+     * Also added functionality of adding comments, related to particular Post model.
      * @param integer $id
      * @return mixed
      */
@@ -66,7 +67,7 @@ class PostsController extends Controller
     }
 
     /**
-     * Creates a new Posts model.
+     * Creates a new Post model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */

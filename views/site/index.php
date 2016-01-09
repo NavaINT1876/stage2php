@@ -5,7 +5,7 @@ use yii\helpers\Html;
 ?>
 <div class="content-wrapper">
     <div class="content">
-        <h1>News list</h1>
+        <h1>Posts list</h1>
         <p>
             <?= Html::a('Create Post', ['posts/create'], ['class' => 'btn btn-primary']) ?>
         </p>
